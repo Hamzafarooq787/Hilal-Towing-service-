@@ -28,18 +28,31 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 
+/* ✅ TYPE FIX */
+type CountUpProps = {
+  end: number;
+  duration?: number;
+  suffix?: string;
+};
+
 // CountUp component
-const CountUp = ({ end, duration = 2000, suffix = '' }) => {
+const CountUp = ({ end, duration = 2000, suffix = '' }: CountUpProps) => {
   const [count, setCount] = useState(0);
-  const ref = useRef(null);
+
+  /* ✅ REF TYPE FIX */
+  const ref = useRef<HTMLSpanElement | null>(null);
+
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   useEffect(() => {
     if (!isInView) return;
+
     let start = 0;
     const increment = end / (duration / 16);
+
     const timer = setInterval(() => {
       start += increment;
+
       if (start >= end) {
         setCount(end);
         clearInterval(timer);
@@ -47,6 +60,7 @@ const CountUp = ({ end, duration = 2000, suffix = '' }) => {
         setCount(Math.floor(start));
       }
     }, 16);
+
     return () => clearInterval(timer);
   }, [isInView, end, duration]);
 
@@ -82,7 +96,6 @@ export default function About() {
     <>
       {/* ===== HERO SECTION ===== */}
       <section className="relative py-28 bg-dark overflow-hidden">
-        {/* Animated Background */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <motion.div
             className="absolute top-20 left-0 text-primary/10 text-8xl"
@@ -91,6 +104,7 @@ export default function About() {
           >
             <FontAwesomeIcon icon={faTruck} />
           </motion.div>
+
           <motion.div
             className="absolute bottom-20 right-0 text-accent/10 text-7xl"
             animate={{ x: ['200%', '-100%'] }}
@@ -98,6 +112,7 @@ export default function About() {
           >
             <FontAwesomeIcon icon={faCar} />
           </motion.div>
+
           <motion.div
             className="absolute top-40 right-20 text-primary/5 text-6xl"
             animate={{ rotate: 360 }}
@@ -105,6 +120,7 @@ export default function About() {
           >
             <FontAwesomeIcon icon={faCircleNotch} />
           </motion.div>
+
           <motion.div
             className="absolute bottom-40 left-20 text-accent/5 text-7xl"
             animate={{ y: [0, -20, 0], rotate: [0, 10, -10, 0] }}
@@ -123,12 +139,14 @@ export default function About() {
           >
             About <span className="text-primary">Hilal Towing</span>
           </motion.h1>
+
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
             className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6"
           />
+
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
