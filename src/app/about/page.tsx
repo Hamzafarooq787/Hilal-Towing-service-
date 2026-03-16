@@ -20,7 +20,6 @@ import {
   faPhone,
   faEnvelope,
   faMapMarkerAlt,
-  faTire,
   faOilCan,
   faBolt,
   faGasPump,
