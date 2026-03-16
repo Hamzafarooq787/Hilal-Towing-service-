@@ -68,22 +68,24 @@ const CountUp = ({ end, duration = 2000, suffix = '' }: CountUpProps) => {
 };
 
 // Animation variants
-const fadeInUp = {
+import { Variants } from 'framer-motion';
+
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
-const slideFromLeft = {
+const slideFromLeft: Variants = {
   hidden: { opacity: 0, x: -80 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
 
-const slideFromRight = {
+const slideFromRight: Variants = {
   hidden: { opacity: 0, x: 80 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
 
-const staggerChildren = {
+const staggerChildren: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,

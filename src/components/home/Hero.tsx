@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPhone,
@@ -36,25 +36,25 @@ const carouselImages = [
   '/services/s5.jpeg',
 ];
 
-// Animation variants (same as before)
-const fadeInUp = {
+// ===== ANIMATION VARIANTS (TYPED) =====
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
 
-const fadeInScale = {
+const fadeInScale: Variants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
-const floatWithDelay = (delay: number) => ({
+const floatWithDelay = (delay: number): Variants => ({
   animate: {
     y: [0, -20, 0],
     transition: { repeat: Infinity, duration: 5, delay, ease: 'easeInOut' },
   },
 });
 
-const pulseAnimation = {
+const pulseAnimation: Variants = {
   animate: {
     scale: [1, 1.1, 1],
     opacity: [0.7, 1, 0.7],
@@ -62,7 +62,7 @@ const pulseAnimation = {
   },
 };
 
-const rotateAnimation = {
+const rotateAnimation: Variants = {
   animate: {
     rotate: [0, 10, -10, 0],
     transition: { repeat: Infinity, duration: 3, ease: 'easeInOut' },
@@ -102,10 +102,10 @@ export default function Hero() {
         <CarouselNext className="right-4 z-30 bg-dark/60 text-white border-none hover:bg-primary hover:scale-110 transition-all duration-300" />
       </Carousel>
 
-      {/* ✅ Background Overlay – SIRF YAHAN COLORS CHANGE KIYE HAIN */}
+      {/* Background Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90 z-10" />
 
-      {/* Decorative Floating Icons (unchanged) */}
+      {/* Decorative Floating Icons */}
       <div className="absolute inset-0 z-15 pointer-events-none overflow-hidden">
         <motion.div
           className="absolute top-1/4 left-5 text-primary/10 text-8xl hidden lg:block"
@@ -193,26 +193,23 @@ export default function Hero() {
             <span className="font-medium text-white">Arriving in 30 minutes.</span>
           </motion.p>
 
-          {/* Buttons with Continuous Subtle Animations */}
+          {/* Buttons */}
           <motion.div
             variants={fadeInUp}
             className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
           >
-            {/* Request Towing - Primary Button with Floating Icon + Signal Rings */}
+            {/* Request Towing */}
             <Button
               asChild
               size="lg"
               className="group relative bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 px-8 py-6 text-lg font-bold rounded-2xl overflow-hidden"
             >
               <Link href="/services">
-                {/* Background shine */}
                 <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                {/* Signal rings (subtle continuous pulse) */}
                 <span className="absolute inset-0 flex items-center justify-center">
                   <span className="absolute w-12 h-12 rounded-full border-2 border-white/30 animate-ping opacity-50" />
                   <span className="absolute w-8 h-8 rounded-full border-2 border-white/40 animate-pulse opacity-75" />
                 </span>
-                {/* Icon with gentle floating animation */}
                 <motion.span
                   animate={{ y: [0, -3, 0] }}
                   transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
@@ -225,7 +222,7 @@ export default function Hero() {
               </Link>
             </Button>
 
-            {/* Chat with AI - Outline Button with Floating Icon */}
+            {/* Chat with AI */}
             <Button
               asChild
               size="lg"
@@ -244,7 +241,7 @@ export default function Hero() {
               </Link>
             </Button>
 
-            {/* Emergency Call - Green Button with Floating & Pulsing Phone Icon */}
+            {/* Emergency Call */}
             <Button
               asChild
               size="lg"
@@ -268,7 +265,6 @@ export default function Hero() {
             variants={fadeInUp}
             className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
           >
-            {/* 24/7 */}
             <motion.div
               whileHover={{ y: -5, boxShadow: '0 10px 30px -10px rgba(255,168,1,0.3)' }}
               className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 text-center border border-white/10 hover:border-primary/30 transition-all"
@@ -277,7 +273,6 @@ export default function Hero() {
               <div className="text-gray-400 font-medium text-sm uppercase tracking-wider">Emergency Service</div>
             </motion.div>
 
-            {/* 30 Min */}
             <motion.div
               whileHover={{ y: -5, boxShadow: '0 10px 30px -10px rgba(241,196,15,0.3)' }}
               className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 text-center border border-white/10 hover:border-accent/30 transition-all"
@@ -286,7 +281,6 @@ export default function Hero() {
               <div className="text-gray-400 font-medium text-sm uppercase tracking-wider">Average Response</div>
             </motion.div>
 
-            {/* 5k+ */}
             <motion.div
               whileHover={{ y: -5, boxShadow: '0 10px 30px -10px rgba(255,255,0,0.3)' }}
               className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 text-center border border-white/10 hover:border-warning/30 transition-all"
@@ -295,7 +289,6 @@ export default function Hero() {
               <div className="text-gray-400 font-medium text-sm uppercase tracking-wider">Vehicles Towed</div>
             </motion.div>
 
-            {/* 15+ */}
             <motion.div
               whileHover={{ y: -5, boxShadow: '0 10px 30px -10px rgba(52,73,94,0.3)' }}
               className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 text-center border border-white/10 hover:border-secondary/30 transition-all"
@@ -307,7 +300,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator (unchanged) */}
+      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

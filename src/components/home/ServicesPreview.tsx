@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTools,
@@ -62,25 +62,25 @@ const services = [
   },
 ];
 
-// === Consistent Animation Variants (from Hero) ===
-const fadeInUp = {
+// === Consistent Animation Variants (typed) ===
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
 
-const fadeInScale = {
+const fadeInScale: Variants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
-const floatWithDelay = (delay: number) => ({
+const floatWithDelay = (delay: number): Variants => ({
   animate: {
     y: [0, -20, 0],
     transition: { repeat: Infinity, duration: 5, delay, ease: 'easeInOut' },
   },
 });
 
-const pulseAnimation = {
+const pulseAnimation: Variants = {
   animate: {
     scale: [1, 1.1, 1],
     opacity: [0.7, 1, 0.7],
@@ -88,7 +88,7 @@ const pulseAnimation = {
   },
 };
 
-const rotateAnimation = {
+const rotateAnimation: Variants = {
   animate: {
     rotate: [0, 10, -10, 0],
     transition: { repeat: Infinity, duration: 3, ease: 'easeInOut' },
@@ -96,7 +96,7 @@ const rotateAnimation = {
 };
 
 // Stagger for cards
-const cardStagger = {
+const cardStagger: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -107,10 +107,10 @@ const cardStagger = {
 export default function ServicesPreview() {
   return (
     <section className="relative py-28 bg-gray-900 overflow-hidden">
-      {/* Dark gradient overlay (same as Hero) */}
+      {/* Dark gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90" />
 
-      {/* === Floating Icons – exactly like Hero === */}
+      {/* Floating Icons */}
       <div className="absolute inset-0 pointer-events-none z-0">
         {/* Moving cars left to right */}
         <motion.div
@@ -144,7 +144,7 @@ export default function ServicesPreview() {
           <FontAwesomeIcon icon={faAmbulance} />
         </motion.div>
 
-        {/* Spinning circles (faCircleNotch) */}
+        {/* Spinning circles */}
         <motion.div
           className="absolute top-1/4 left-10 text-primary/10 text-4xl"
           animate={{ rotate: 360 }}
@@ -178,7 +178,7 @@ export default function ServicesPreview() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header with gradient underline */}
+        {/* Header */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
@@ -195,7 +195,7 @@ export default function ServicesPreview() {
           </p>
         </motion.div>
 
-        {/* Key benefits row – glassmorphism badges */}
+        {/* Key benefits row */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
@@ -268,7 +268,7 @@ export default function ServicesPreview() {
                   {service.desc}
                 </p>
 
-                {/* Learn More Button with enhanced animation */}
+                {/* Learn More Button */}
                 <Link
                   href="/services"
                   className="inline-flex items-center text-primary font-semibold hover:text-accent transition-colors group/link"
@@ -294,7 +294,7 @@ export default function ServicesPreview() {
           ))}
         </motion.div>
 
-        {/* View All Services Button – styled exactly like Hero button */}
+        {/* View All Services Button */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"

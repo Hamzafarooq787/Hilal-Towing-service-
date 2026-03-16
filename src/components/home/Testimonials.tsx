@@ -1,18 +1,16 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faStar,
   faQuoteLeft,
-  faQuoteRight,
   faCar,
   faTruck,
   faWrench,
   faCircleNotch,
-  faCogs,
 } from '@fortawesome/free-solid-svg-icons';
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -51,17 +49,14 @@ const testimonials = [
   },
 ];
 
+// Simple placeholder image (base64 or you can use a local fallback)
+const placeholderImage = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 40 40\'%3E%3Crect width=\'40\' height=\'40\' fill=\'%23333\' /%3E%3Ctext x=\'8\' y=\'25\' fill=\'%23999\' font-size=\'18\'%3E?%3C/text%3E%3C/svg%3E';
+
 const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [currentIndex]);
-
+  // Define navigation functions first (so they are available in useEffect)
   const nextSlide = useCallback(() => {
     setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -72,12 +67,21 @@ const Testimonials: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   }, []);
 
+  // Auto‑advance every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
   const handleDotClick = (index: number) => {
     setDirection(index > currentIndex ? 1 : -1);
     setCurrentIndex(index);
   };
 
-  const slideVariants = {
+  // Typed slide variants for AnimatePresence
+  const slideVariants: Variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 300 : -300,
       opacity: 0,
@@ -94,9 +98,12 @@ const Testimonials: React.FC = () => {
     }),
   };
 
+  // Safely get current testimonial
+  const currentTestimonial = testimonials[currentIndex];
+
   return (
     <section className="relative py-28 bg-gray-900 overflow-hidden">
-      {/* Floating animated icons – exactly like GallerySection */}
+      {/* Floating animated icons */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           className="absolute top-10 left-5 text-primary/20"
@@ -129,7 +136,7 @@ const Testimonials: React.FC = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header – exactly like GallerySection */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -148,7 +155,7 @@ const Testimonials: React.FC = () => {
             <span className="text-sm font-medium text-white">Client Stories</span>
           </motion.div>
 
-          {/* Main heading with gradient and glow */}
+          {/* Main heading with gradient */}
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -175,11 +182,11 @@ const Testimonials: React.FC = () => {
             transition={{ delay: 0.5 }}
             className="text-gray-300 max-w-2xl mx-auto text-lg"
           >
-            Real experiences from drivers we've helped across the UAE.
+            Real experiences from drivers we helped across the UAE.
           </motion.p>
         </motion.div>
 
-        {/* Carousel Container – exactly like GallerySection */}
+        {/* Carousel Container */}
         <div className="relative w-full max-w-4xl mx-auto group">
           <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-gray-800/50 backdrop-blur-sm">
             <AnimatePresence custom={direction} initial={false}>
@@ -199,9 +206,9 @@ const Testimonials: React.FC = () => {
                     <FontAwesomeIcon icon={faQuoteLeft} />
                   </div>
 
-                  {/* Testimonial text */}
+                  {/* Testimonial text – safe access with fallback */}
                   <p className="text-gray-200 text-lg md:text-xl italic mb-6">
-                    "{testimonials[currentIndex].text}"
+                    "{currentTestimonial?.text || 'No testimonial text'}"
                   </p>
 
                   {/* Client info */}
@@ -209,8 +216,8 @@ const Testimonials: React.FC = () => {
                     <div className="relative mr-4">
                       <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-primary/30">
                         <Image
-                          src={testimonials[currentIndex].image}
-                          alt={testimonials[currentIndex].name}
+                          src={currentTestimonial?.image || placeholderImage}
+                          alt={currentTestimonial?.name || 'Client'}
                           width={64}
                           height={64}
                           className="object-cover"
@@ -226,14 +233,14 @@ const Testimonials: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-bold text-white text-lg">
-                        {testimonials[currentIndex].name}
+                        {currentTestimonial?.name || 'Anonymous'}
                       </h4>
                       <p className="text-sm text-gray-400">
-                        {testimonials[currentIndex].location}
+                        {currentTestimonial?.location || 'UAE'}
                       </p>
-                      {testimonials[currentIndex].company && (
+                      {currentTestimonial?.company && (
                         <p className="text-xs text-gray-500 mt-1">
-                          {testimonials[currentIndex].company}
+                          {currentTestimonial.company}
                         </p>
                       )}
                     </div>
@@ -245,7 +252,7 @@ const Testimonials: React.FC = () => {
                       <FontAwesomeIcon
                         key={i}
                         icon={faStar}
-                        className={i < testimonials[currentIndex].rating ? 'text-primary' : 'text-gray-600'}
+                        className={i < (currentTestimonial?.rating ?? 0) ? 'text-primary' : 'text-gray-600'}
                       />
                     ))}
                   </div>
@@ -253,7 +260,7 @@ const Testimonials: React.FC = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation buttons – appear on hover */}
+            {/* Navigation buttons */}
             <button
               onClick={prevSlide}
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
@@ -288,7 +295,7 @@ const Testimonials: React.FC = () => {
         </div>
       </div>
 
-      {/* Extra floating icons – moving across screen */}
+      {/* Extra floating icons */}
       <motion.div
         className="absolute top-1/3 left-0 text-white/5"
         animate={{ x: ["-100%", "200%"] }}

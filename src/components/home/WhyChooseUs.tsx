@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faClock,
@@ -17,37 +17,37 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 
-// === Consistent Animation Variants (from Hero) ===
-const fadeInUp = {
+// === Consistent Animation Variants (typed) ===
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
 
-const slideFromLeft = {
+const slideFromLeft: Variants = {
   hidden: { opacity: 0, x: -80 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
 
-const slideFromRight = {
+const slideFromRight: Variants = {
   hidden: { opacity: 0, x: 80 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
 
-const floatWithDelay = (delay: number) => ({
+const floatWithDelay = (delay: number): Variants => ({
   animate: {
     y: [0, -20, 0],
     transition: { repeat: Infinity, duration: 5, delay, ease: 'easeInOut' },
   },
 });
 
-const rotateAnimation = {
+const rotateAnimation: Variants = {
   animate: {
     rotate: [0, 10, -10, 0],
     transition: { repeat: Infinity, duration: 3, ease: 'easeInOut' },
   },
 };
 
-const pulseAnimation = {
+const pulseAnimation: Variants = {
   animate: {
     scale: [1, 1.1, 1],
     opacity: [0.7, 1, 0.7],

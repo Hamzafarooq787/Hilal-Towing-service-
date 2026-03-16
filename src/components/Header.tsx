@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faTruck } from '@fortawesome/free-solid-svg-icons';
@@ -24,7 +24,7 @@ export default function Header() {
   return (
     <header className="bg-dark border-b border-white/10 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo – larger and bolder */}
+        {/* Logo */}
         <Link href="/" className="flex items-center space-x-3 group">
           <motion.div
             whileHover={{ rotate: 5, scale: 1.15 }}
@@ -44,8 +44,9 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-lg font-medium transition-colors hover:text-primary relative ${pathname === link.href ? 'text-primary' : 'text-gray-300'
-                }`}
+              className={`text-lg font-medium transition-colors hover:text-primary relative ${
+                pathname === link.href ? 'text-primary' : 'text-gray-300'
+              }`}
             >
               {link.label}
               {pathname === link.href && (
@@ -61,10 +62,9 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Phone Number (Desktop) with red color and signal rings */}
+        {/* Phone Number (Desktop) */}
         <div className="hidden md:flex items-center relative">
           <div className="relative">
-            {/* Signal rings */}
             <motion.span
               className="absolute -inset-2 rounded-full border-2 border-red-500/50"
               animate={{ scale: [1, 1.2, 1], opacity: [0.7, 0, 0.7] }}
@@ -85,13 +85,17 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - fixed: no nested button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden text-white hover:bg-white/10 h-12 w-12"
+          onClick={() => setOpen(true)}
+        >
+          <Menu className="h-6 w-6" />
+        </Button>
+
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger className="md:hidden">
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 h-12 w-12">
-              <Menu className="h-6 w-6" />
-            </Button>
-          </SheetTrigger>
           <SheetContent side="right" className="w-[280px] bg-dark border-l border-white/10">
             <nav className="flex flex-col space-y-4 mt-8">
               {navLinks.map((link) => (
@@ -99,10 +103,11 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className={`text-lg font-medium py-3 px-4 rounded transition-colors ${pathname === link.href
+                  className={`text-lg font-medium py-3 px-4 rounded transition-colors ${
+                    pathname === link.href
                       ? 'text-primary bg-primary/10'
                       : 'text-gray-300 hover:bg-white/5 hover:text-primary'
-                    }`}
+                  }`}
                 >
                   {link.label}
                 </Link>

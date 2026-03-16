@@ -17,45 +17,25 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-
-// Dynamically import map components (to avoid SSR issues)
-const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
-const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
-const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
-const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ssr: false });
-
-// Import Leaflet CSS
-import 'leaflet/dist/leaflet.css';
-
-// Fix marker icons in Next.js
-import L from 'leaflet';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import Link from 'next/link';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
-let DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-L.Marker.prototype.options.icon = DefaultIcon;
-
+// Dynamically import the map component with SSR disabled
+const MapComponent = dynamic(() => import('@/components/MapComponent'), { ssr: false });
 // Animation variants
-const fadeInUp = {
+import { Variants } from 'framer-motion';
+
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
-const slideFromLeft = {
+const slideFromLeft: Variants = {
   hidden: { opacity: 0, x: -80 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
 
-const slideFromRight = {
+const slideFromRight: Variants = {
   hidden: { opacity: 0, x: 80 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
@@ -264,33 +244,7 @@ export default function Contact() {
 
       {/* ===== REAL INTERACTIVE MAP ===== */}
       <section className="h-[500px] relative overflow-hidden bg-dark">
-        {mapLoaded && (
-          <MapContainer
-            center={[25.276987, 55.296249]} // Center between Sharjah & Dubai
-            zoom={10}
-            style={{ height: '100%', width: '100%' }}
-            className="z-0"
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            {/* Sharjah Marker */}
-            <Marker position={[25.3463, 55.4209]}>
-              <Popup>
-                <div className="font-bold text-dark">Sharjah</div>
-                <div className="text-sm text-gray-600">Main service area</div>
-              </Popup>
-            </Marker>
-            {/* Dubai Marker */}
-            <Marker position={[25.2048, 55.2708]}>
-              <Popup>
-                <div className="font-bold text-dark">Dubai</div>
-                <div className="text-sm text-gray-600">Main service area</div>
-              </Popup>
-            </Marker>
-          </MapContainer>
-        )}
+        {mapLoaded && <MapComponent />}
 
         {/* Overlay with service area info */}
         <div className="absolute bottom-8 left-8 z-10 bg-dark/90 backdrop-blur-sm p-4 rounded-xl border border-white/10 shadow-2xl">

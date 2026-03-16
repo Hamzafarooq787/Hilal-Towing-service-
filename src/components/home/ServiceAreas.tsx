@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMapMarkerAlt,
@@ -24,20 +24,20 @@ const areas = [
   'JLT',
 ];
 
-// Animation variants (same as Hero)
-const fadeInUp = {
+// Animation variants (typed)
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
 
-const floatWithDelay = (delay: number) => ({
+const floatWithDelay = (delay: number): Variants => ({
   animate: {
     y: [0, -20, 0],
     transition: { repeat: Infinity, duration: 5, delay, ease: 'easeInOut' },
   },
 });
 
-const pulseAnimation = {
+const pulseAnimation: Variants = {
   animate: {
     scale: [1, 1.1, 1],
     opacity: [0.7, 1, 0.7],
@@ -45,7 +45,7 @@ const pulseAnimation = {
   },
 };
 
-const rotateAnimation = {
+const rotateAnimation: Variants = {
   animate: {
     rotate: [0, 10, -10, 0],
     transition: { repeat: Infinity, duration: 3, ease: 'easeInOut' },
