@@ -15,16 +15,22 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-
-// Dynamically import the map component with SSR disabled
-const MapComponent = dynamic(() => import('@/components/MapComponent'), { ssr: false });
-// Animation variants
 import { Variants } from 'framer-motion';
 
+// Dynamically import the map component with SSR disabled and a loading fallback
+const MapComponent = dynamic(() => import('@/components/MapComponent'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full w-full flex items-center justify-center bg-dark/50">
+      <FontAwesomeIcon icon={faCircleNotch} className="text-primary text-4xl animate-spin" />
+    </div>
+  ),
+});
+
+// Animation variants
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
@@ -41,12 +47,6 @@ const slideFromRight: Variants = {
 };
 
 export default function Contact() {
-  const [mapLoaded, setMapLoaded] = useState(false);
-
-  useEffect(() => {
-    setMapLoaded(true);
-  }, []);
-
   return (
     <>
       {/* ===== HERO SECTION ===== */}
@@ -88,7 +88,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight"
+            className="text-4xl md:text-6xl font-extrabold text-white mb-4 tracking-tight"
           >
             Contact <span className="text-primary">Us</span>
           </motion.h1>
@@ -102,7 +102,7 @@ export default function Contact() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-xl text-gray-300 max-w-2xl mx-auto font-light"
+            className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto font-light"
           >
             We're here 24/7 to help you. Reach out anytime.
           </motion.p>
@@ -120,11 +120,11 @@ export default function Contact() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
                 Get in <span className="text-primary">Touch</span>
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent rounded-full mb-6" />
-              <p className="text-gray-300 text-lg mb-8">
+              <p className="text-gray-300 text-base md:text-lg mb-8">
                 Whether you need immediate assistance or have a question, our team is ready to help 24/7.
               </p>
 
@@ -144,16 +144,16 @@ export default function Contact() {
                       <FontAwesomeIcon icon={item.icon} className="h-6 w-6" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-white text-lg">{item.title}</h3>
+                      <h3 className="font-bold text-white text-base md:text-lg">{item.title}</h3>
                       {item.link ? (
                         <a
                           href={item.link}
-                          className="text-gray-400 hover:text-primary transition-colors duration-200"
+                          className="text-sm md:text-base text-gray-400 hover:text-primary transition-colors duration-200"
                         >
                           {item.value}
                         </a>
                       ) : (
-                        <p className="text-gray-400">{item.value}</p>
+                        <p className="text-sm md:text-base text-gray-400">{item.value}</p>
                       )}
                     </div>
                   </motion.div>
@@ -165,7 +165,7 @@ export default function Contact() {
                 <Button
                   asChild
                   size="lg"
-                  className="group relative bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-6 text-lg font-bold rounded-full overflow-hidden"
+                  className="group relative bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-4 md:px-6 md:py-6 text-base md:text-lg font-bold rounded-full overflow-hidden"
                 >
                   <Link href="tel:0551348899">
                     <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -177,7 +177,7 @@ export default function Contact() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="group border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300 px-6 py-6 text-lg font-bold rounded-full"
+                  className="group border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300 px-6 py-4 md:px-6 md:py-6 text-base md:text-lg font-bold rounded-full"
                 >
                   <Link href="https://wa.me/971551348899?text=Hello!%20I%20need%20towing%20assistance." target="_blank">
                     <FontAwesomeIcon icon={faWhatsapp} className="mr-2 text-green-400" />
@@ -193,16 +193,16 @@ export default function Contact() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-2xl"
+              className="bg-white/5 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-white/10 shadow-2xl"
             >
-              <h2 className="text-3xl font-bold text-white mb-6">Send a Message</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Send a Message</h2>
               <form className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Name</label>
                   <Input
                     type="text"
                     placeholder="Your name"
-                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary"
+                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary text-sm md:text-base"
                   />
                 </div>
                 <div>
@@ -210,7 +210,7 @@ export default function Contact() {
                   <Input
                     type="email"
                     placeholder="your@email.com"
-                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary"
+                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary text-sm md:text-base"
                   />
                 </div>
                 <div>
@@ -218,7 +218,7 @@ export default function Contact() {
                   <Input
                     type="tel"
                     placeholder="055 134 8899"
-                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary"
+                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary text-sm md:text-base"
                   />
                 </div>
                 <div>
@@ -226,13 +226,13 @@ export default function Contact() {
                   <Textarea
                     rows={4}
                     placeholder="How can we help?"
-                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary"
+                    className="w-full bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary text-sm md:text-base"
                   />
                 </div>
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 py-6 text-lg font-bold rounded-full"
+                  className="w-full bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 py-4 md:py-6 text-base md:text-lg font-bold rounded-full"
                 >
                   Send Message
                 </Button>
@@ -244,15 +244,16 @@ export default function Contact() {
 
       {/* ===== REAL INTERACTIVE MAP ===== */}
       <section className="h-[500px] relative overflow-hidden bg-dark">
-        {mapLoaded && <MapComponent />}
+        {/* Map renders only on client thanks to dynamic import with ssr: false */}
+        <MapComponent />
 
         {/* Overlay with service area info */}
-        <div className="absolute bottom-8 left-8 z-10 bg-dark/90 backdrop-blur-sm p-4 rounded-xl border border-white/10 shadow-2xl">
+        <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 z-10 bg-dark/90 backdrop-blur-sm p-4 rounded-xl border border-white/10 shadow-2xl">
           <div className="flex items-center gap-3">
-            <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary text-2xl animate-pulse" />
+            <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary text-xl md:text-2xl animate-pulse" />
             <div>
-              <h3 className="text-white font-bold">Sharjah & Dubai</h3>
-              <p className="text-gray-400 text-sm">We cover all major areas</p>
+              <h3 className="text-white font-bold text-sm md:text-base">Sharjah & Dubai</h3>
+              <p className="text-gray-400 text-xs md:text-sm">We cover all major areas</p>
             </div>
           </div>
         </div>
@@ -283,7 +284,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl md:text-5xl font-bold mb-4"
           >
             Need Immediate Help?
           </motion.h2>
@@ -292,7 +293,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-xl mb-8 opacity-90"
+            className="text-base md:text-xl mb-8 opacity-90"
           >
             Call us now – we're available 24/7
           </motion.p>
@@ -316,7 +317,7 @@ export default function Contact() {
             <Button
               asChild
               size="lg"
-              className="group relative bg-white text-primary hover:bg-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 px-10 py-6 text-lg font-bold rounded-full overflow-hidden"
+              className="group relative bg-white text-primary hover:bg-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 px-8 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold rounded-full overflow-hidden"
             >
               <Link href="tel:0551348899">
                 <span className="absolute inset-0 bg-dark/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />

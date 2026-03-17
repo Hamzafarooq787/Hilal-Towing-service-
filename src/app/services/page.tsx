@@ -112,7 +112,7 @@ const staggerChildren: Variants = {
 };
 
 export default function Services() {
-  return (
+ return (
     <>
       {/* ===== HERO SECTION ===== */}
       <section className="relative py-28 bg-dark overflow-hidden">
@@ -153,7 +153,7 @@ export default function Services() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight"
+            className="text-4xl md:text-6xl font-extrabold text-white mb-4 tracking-tight"
           >
             Our <span className="text-primary">Services</span>
           </motion.h1>
@@ -167,7 +167,7 @@ export default function Services() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-xl text-gray-300 max-w-2xl mx-auto font-light"
+            className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto font-light"
           >
             Comprehensive roadside assistance tailored to your needs.
           </motion.p>
@@ -218,13 +218,13 @@ export default function Services() {
                     transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
                     className="absolute bottom-4 left-4 text-white z-10"
                   >
-                    <FontAwesomeIcon icon={service.icon} className="text-5xl drop-shadow-2xl" />
+                    <FontAwesomeIcon icon={service.icon} className="text-4xl md:text-5xl drop-shadow-2xl" />
                   </motion.div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6 relative z-10">
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
                     {service.name}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed mb-4">
@@ -233,7 +233,7 @@ export default function Services() {
                   <Button
                     asChild
                     size="lg"
-                    className="group/btn relative bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-3 text-base font-semibold rounded-full overflow-hidden"
+                    className="group/btn relative bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-3 text-sm md:text-base font-semibold rounded-full overflow-hidden"
                   >
                     <Link href="/contact">
                       <span className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
@@ -259,7 +259,7 @@ export default function Services() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-extrabold text-center text-white mb-4 tracking-tight"
+            className="text-3xl md:text-5xl font-extrabold text-center text-white mb-4 tracking-tight"
           >
             Service <span className="text-primary">Excellence</span>
           </motion.h2>
@@ -290,8 +290,8 @@ export default function Services() {
                 whileHover={{ scale: 1.05, boxShadow: '0 10px 30px -10px rgba(255,168,1,0.3)' }}
                 className="bg-white/5 backdrop-blur-sm p-6 rounded-xl text-center border border-white/10 hover:border-primary/50 transition-all"
               >
-                <FontAwesomeIcon icon={stat.icon} className="text-primary text-4xl mb-3 animate-float" />
-                <div className="text-3xl font-extrabold text-primary">
+                <FontAwesomeIcon icon={stat.icon} className="text-3xl md:text-4xl text-primary mb-3 animate-float" />
+                <div className="text-2xl md:text-3xl font-extrabold text-primary">
                   <CountUp end={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="text-gray-400 text-sm mt-1">{stat.label}</div>
@@ -341,7 +341,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl md:text-5xl font-bold mb-4"
           >
             Need Immediate Help?
           </motion.h2>
@@ -350,7 +350,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-xl mb-8 opacity-90"
+            className="text-base md:text-xl mb-8 opacity-90"
           >
             Call us now – we’re available 24/7
           </motion.p>
@@ -375,7 +375,7 @@ export default function Services() {
             <Button
               asChild
               size="lg"
-              className="group relative bg-white text-primary hover:bg-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 px-10 py-6 text-lg font-bold rounded-full overflow-hidden"
+              className="group relative bg-white text-primary hover:bg-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 px-8 md:px-10 py-4 md:py-6 text-sm md:text-lg font-bold rounded-full overflow-hidden"
             >
               <Link href="tel:0551348899">
                 <span className="absolute inset-0 bg-dark/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
