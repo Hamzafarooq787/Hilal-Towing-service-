@@ -1,7 +1,8 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @theme {
-  /* Your custom colors */
+  /* Brand Colors */
   --color-primary: #ffa801;
   --color-primary-foreground: #ffffff;
   --color-secondary: #34495e;
@@ -13,22 +14,34 @@
   --color-dark: #1e272e;
   --color-dark-foreground: #ffffff;
 
-  /* Required for border-border utility */
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+  /* shadcn/ui design tokens mapped to brand */
+  --color-background: #111820;
+  --color-foreground: #f2f2f2;
+  --color-card: #1a2330;
+  --color-card-foreground: #f2f2f2;
+  --color-popover: #1a2330;
+  --color-popover-foreground: #f2f2f2;
+  --color-muted: #2a3540;
+  --color-muted-foreground: #9ca3af;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #2d3d4a;
+  --color-input: #2a3540;
+  --color-ring: #ffa801;
+
+  /* Border radius */
+  --radius: 0.5rem;
 
   /* Animations */
   --animate-float: float 3s ease-in-out infinite;
-  --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
 
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
   }
-  @keyframes pulse {
+
+  @keyframes pulse-slow {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
   }
@@ -38,7 +51,7 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-@keyframes pulse {
+@keyframes pulse-slow {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
@@ -54,11 +67,12 @@
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 .animate-pulse-slow {
-  animation: pulse 3s ease-in-out infinite;
+  animation: pulse-slow 3s ease-in-out infinite;
 }
 .animate-slide-left {
   animation: slide-left 0.7s ease-out forwards;

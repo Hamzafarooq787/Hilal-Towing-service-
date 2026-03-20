@@ -132,11 +132,12 @@ export default function ServiceAreas() {
               }}
               whileHover={{
                 scale: 1.1,
-                backgroundColor: '#ffa801', // primary
+                backgroundColor: '#ffa801',
                 color: '#1e272e',
                 transition: { duration: 0.2 },
               }}
-              className="group relative bg-white/5 backdrop-blur-sm px-4 py-3 rounded-full border border-white/10 text-white font-medium text-center cursor-default transition-all shadow-lg hover:shadow-primary/20 flex items-center justify-center gap-2"
+              style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}
+              className="group relative backdrop-blur-sm px-4 py-3 rounded-full border border-white/10 text-white font-medium text-center cursor-default transition-all shadow-lg hover:shadow-primary/20 flex items-center justify-center gap-2"
             >
               <FontAwesomeIcon
                 icon={faLocationDot}
