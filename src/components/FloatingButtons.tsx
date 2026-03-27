@@ -28,9 +28,9 @@ export default function FloatingButtons() {
           transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
           whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 0.95 }}
-          className="relative flex items-center justify-center w-16 h-16 bg-red-600 text-white rounded-full shadow-2xl hover:bg-red-700 transition-colors"
+          className="relative flex items-center justify-center w-11 h-11 bg-red-600 text-white rounded-full shadow-2xl hover:bg-red-700 transition-colors"
         >
-          <FontAwesomeIcon icon={faPhone} className="h-8 w-8" />
+          <FontAwesomeIcon icon={faPhone} className="h-6 w-6" />
         </motion.a>
       </div>
 
@@ -56,9 +56,9 @@ export default function FloatingButtons() {
           transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
           whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 0.95 }}
-          className="relative flex items-center justify-center w-16 h-16 bg-green-600 text-white rounded-full shadow-2xl hover:bg-green-700 transition-colors"
+          className="relative flex items-center justify-center w-11 h-11 bg-green-600 text-white rounded-full shadow-2xl hover:bg-green-700 transition-colors"
         >
-          <FontAwesomeIcon icon={faWhatsapp} className="h-8 w-8" />
+          <FontAwesomeIcon icon={faWhatsapp} className="h-6 w-6" />
         </motion.a>
       </div>
     </div>
