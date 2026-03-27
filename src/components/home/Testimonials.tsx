@@ -28,7 +28,7 @@ const testimonials = [
     location: 'Sharjah',
     text: 'After my accident they handled everything professionally. Highly recommend.',
     rating: 5,
-    image: 'https://images.unsplash.com/photo-1494790108777-9f5e9e7b6b7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
     company: 'Al Zahra Hospital',
   },
   {
