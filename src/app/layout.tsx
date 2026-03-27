@@ -15,6 +15,28 @@ export const metadata: Metadata = {
   description: 'Breakdown Recovery, Accident Recovery, Towing, Fuel Delivery, JumpStart and Roadside Assistance in Sharjah and Dubai. Call 055 134 8899.',
   keywords: 'Towing, Sharjah, Dubai, Breakdown Recovery, Accident Recovery, Fuel Delivery, JumpStart, Roadside Assistance',
   authors: [{ name: 'Hilal Towing' }],
+  openGraph: {
+    title: 'Hilal Towing Service - Roadside Assistance Sharjah & Dubai',
+    description: 'Breakdown Recovery, Accident Recovery, Towing, Fuel Delivery, JumpStart and Roadside Assistance in Sharjah and Dubai. Call 055 134 8899.',
+    url: 'https://hilaltowing.ae',
+    siteName: 'Hilal Towing Service',
+    images: [
+      {
+        url: '/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Hilal Towing Service - 24/7 Emergency Towing in Sharjah & Dubai',
+      },
+    ],
+    locale: 'en_AE',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hilal Towing Service - Roadside Assistance Sharjah & Dubai',
+    description: 'Breakdown Recovery, Accident Recovery, Towing, Fuel Delivery, JumpStart and Roadside Assistance in Sharjah and Dubai. Call 055 134 8899.',
+    images: ['/images/og-image.png'],
+  },
 }
 
 export const viewport: Viewport = {
