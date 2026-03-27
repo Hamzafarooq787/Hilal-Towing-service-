@@ -112,7 +112,7 @@ export default function Footer() {
             >
               Linkedo
             </a>
-            ❤
+            <span className="text-red-500">❤</span>
           </p>
         </div>
       </div>
