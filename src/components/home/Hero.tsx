@@ -81,11 +81,11 @@ export default function Hero() {
       }),
     ]}
     opts={{ loop: true }}
-    className="absolute inset-0 z-0"
+    className="absolute inset-0 z-0 h-full"
   >
-    <CarouselContent>
+    <CarouselContent className="h-full ml-0">
       {carouselImages.map((src, index) => (
-        <CarouselItem key={index} className="relative w-full h-[70vh] sm:h-[80vh] md:h-screen">
+        <CarouselItem key={index} className="relative h-screen min-h-screen pl-0">
           <Image
             src={src}
             alt={`Service ${index + 1}`}
@@ -106,7 +106,7 @@ export default function Hero() {
   <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90 z-10" />
 
   {/* Decorative Floating Icons */}
-  <div className="absolute inset-0 z-15 pointer-events-none overflow-hidden">
+  <div className="absolute inset-0 z-[15] pointer-events-none overflow-hidden">
     <motion.div
       className="absolute top-1/4 left-5 text-primary/10 text-8xl hidden lg:block"
       animate={{ x: [0, 40, 0], rotate: [0, 5, 0] }}
@@ -160,7 +160,7 @@ export default function Hero() {
   </div>
 
   {/* Main Content */}
-  <div className="container mx-auto max-w-7xl px-3 sm:px-4 md:px-6 relative z-20">
+  <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative z-20 py-24 sm:py-28">
     <motion.div
       variants={fadeInScale}
       initial="hidden"
@@ -170,7 +170,7 @@ export default function Hero() {
       {/* Badge */}
       <motion.div
         variants={fadeInUp}
-        className="inline-flex items-center space-x-2 sm:space-x-3 mb-6 sm:mb-8 bg-white/10 backdrop-blur-sm px-4 sm:px-6 py-2 rounded-full border border-primary/30"
+        className="inline-flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8 bg-white/10 backdrop-blur-sm px-4 sm:px-6 py-2 rounded-full border border-primary/30"
       >
         <div className="p-1.5 sm:p-2 bg-primary/20 rounded-full">
           <FontAwesomeIcon icon={faTruck} className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
@@ -183,20 +183,21 @@ export default function Hero() {
       {/* Heading */}
       <motion.h1
         variants={fadeInUp}
-        className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-extrabold text-white mb-4 sm:mb-6 tracking-tight leading-tight px-2 sm:px-0"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-4 sm:mb-6 tracking-tight leading-tight"
       >
-        Reliable Car Towing <br className="hidden md:block" />
+        Reliable Car Towing{' '}
+        <br className="hidden sm:block" />
         <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-          & Breakdown Recovery
+          &amp; Breakdown Recovery
         </span>
       </motion.h1>
 
       {/* Subheading */}
       <motion.p
         variants={fadeInUp}
-        className="text-base sm:text-lg md:text-2xl text-gray-300 mb-4 sm:mb-6 max-w-3xl mx-auto font-light px-3 sm:px-0 leading-relaxed"
+        className="text-sm sm:text-lg md:text-xl text-gray-300 mb-4 sm:mb-6 max-w-2xl mx-auto font-light leading-relaxed"
       >
-        Fast, professional vehicle recovery in Sharjah & Dubai.{' '}
+        Fast, professional vehicle recovery in Sharjah &amp; Dubai.{' '}
         <span className="font-medium text-white">Arriving in 30 minutes.</span>
       </motion.p>
 
@@ -208,7 +209,7 @@ export default function Hero() {
         <Button
           asChild
           size="lg"
-          className="group relative bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 px-5 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 text-sm sm:text-base md:text-lg font-bold rounded-2xl overflow-hidden w-full sm:w-auto"
+          className="group relative bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 px-6 py-4 md:px-8 md:py-6 text-sm sm:text-base md:text-lg font-bold rounded-2xl overflow-hidden w-full sm:w-auto"
         >
           <Link href="/services">
             <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -223,7 +224,7 @@ export default function Hero() {
           asChild
           size="lg"
           variant="outline"
-          className="group relative border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300 px-5 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 text-sm sm:text-base md:text-lg font-bold rounded-2xl backdrop-blur-sm w-full sm:w-auto"
+          className="group relative border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300 px-6 py-4 md:px-8 md:py-6 text-sm sm:text-base md:text-lg font-bold rounded-2xl backdrop-blur-sm w-full sm:w-auto"
         >
           <Link href="/contact">
             <motion.span className="mr-2 inline-block">
@@ -236,7 +237,7 @@ export default function Hero() {
         <Button
           asChild
           size="lg"
-          className="group relative bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-5 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 text-sm sm:text-base md:text-lg font-bold rounded-2xl w-full sm:w-auto"
+          className="group relative bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-4 md:px-8 md:py-6 text-sm sm:text-base md:text-lg font-bold rounded-2xl w-full sm:w-auto"
         >
           <Link href="tel:0551348899">
             <motion.span className="mr-2 inline-block">
@@ -250,25 +251,25 @@ export default function Hero() {
       {/* Stats */}
       <motion.div
         variants={fadeInUp}
-        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-12 sm:mt-16 md:mt-20 px-2 sm:px-0"
+        className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-10 sm:mt-14 md:mt-16"
       >
-        <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-4 sm:p-5 md:p-6 text-center border border-white/10">
-          <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary mb-2">24/7</div>
+        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-3 sm:p-5 md:p-6 text-center border border-white/10">
+          <div className="text-xl sm:text-3xl md:text-4xl font-extrabold text-primary mb-1 sm:mb-2">24/7</div>
           <div className="text-gray-400 text-xs sm:text-sm">Emergency Service</div>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-4 sm:p-5 md:p-6 text-center border border-white/10">
-          <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-accent mb-2">30 Min</div>
+        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-3 sm:p-5 md:p-6 text-center border border-white/10">
+          <div className="text-xl sm:text-3xl md:text-4xl font-extrabold text-accent mb-1 sm:mb-2">30 Min</div>
           <div className="text-gray-400 text-xs sm:text-sm">Average Response</div>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-4 sm:p-5 md:p-6 text-center border border-white/10">
-          <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-warning mb-2">5k+</div>
+        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-3 sm:p-5 md:p-6 text-center border border-white/10">
+          <div className="text-xl sm:text-3xl md:text-4xl font-extrabold text-warning mb-1 sm:mb-2">5k+</div>
           <div className="text-gray-400 text-xs sm:text-sm">Vehicles Towed</div>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-4 sm:p-5 md:p-6 text-center border border-white/10">
-          <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-secondary mb-2">15+</div>
+        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-3 sm:p-5 md:p-6 text-center border border-white/10">
+          <div className="text-xl sm:text-3xl md:text-4xl font-extrabold text-secondary mb-1 sm:mb-2">15+</div>
           <div className="text-gray-400 text-xs sm:text-sm">Years Experience</div>
         </div>
       </motion.div>
