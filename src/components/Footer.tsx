@@ -103,7 +103,16 @@ export default function Footer() {
         <div className="pt-6 border-t border-white/10 text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
           <p>&copy; {new Date().getFullYear()} Hilal Towing Service. All rights reserved.</p>
           <p className="mt-2 md:mt-0">
-            Designed with <span className="text-red-500">❤</span> for UAE drivers
+            Designed with{' '}
+            <a
+              href="https://linkedo.co.uk/"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="text-primary no-underline hover:text-primary/80 transition-colors"
+            >
+              Linkedo
+            </a>
+            ❤
           </p>
         </div>
       </div>
