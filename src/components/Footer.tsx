@@ -112,7 +112,7 @@ export default function Footer() {
             >
               Linkedo
             </a>
-            <span className="text-red-500">❤</span>
+            <span className="text-red-500 inline-block animate-pulse" style={{ animationDuration: '0.8s' }}>❤</span>
           </p>
         </div>
       </div>
