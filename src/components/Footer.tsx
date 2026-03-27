@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faMapMarkerAlt, faEnvelope, faTruck } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faMapMarkerAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
@@ -16,9 +17,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <FontAwesomeIcon icon={faTruck} className="text-primary text-3xl" />
-              <h3 className="text-2xl font-bold text-white">HILAL<span className="text-primary">TOWING</span></h3>
+            <div className="mb-4">
+              <Image
+                src="/images/logo.png"
+                alt="Hilal Towing Service"
+                width={180}
+                height={64}
+                className="h-14 w-auto object-contain"
+              />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
               Professional roadside assistance in Sharjah and Dubai. Available 24/7, always ready to help.
@@ -103,7 +109,16 @@ export default function Footer() {
         <div className="pt-6 border-t border-white/10 text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
           <p>&copy; {new Date().getFullYear()} Hilal Towing Service. All rights reserved.</p>
           <p className="mt-2 md:mt-0">
-            Designed with <span className="text-red-500">❤</span> for UAE drivers
+            Designed with{' '}
+            <a
+              href="https://linkedo.co.uk/"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="text-primary no-underline hover:text-primary/80 transition-colors"
+            >
+              Linkedo
+            </a>
+            <span className="text-red-500 inline-block animate-pulse" style={{ animationDuration: '0.8s' }}>❤</span>
           </p>
         </div>
       </div>
