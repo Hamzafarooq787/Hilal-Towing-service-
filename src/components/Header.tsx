@@ -8,7 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faTruck } from '@fortawesome/free-solid-svg-icons';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -25,17 +26,15 @@ export default function Header() {
     <header className="bg-dark border-b border-white/10 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-3 group">
-          <motion.div
-            whileHover={{ rotate: 5, scale: 1.15 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-            className="text-primary"
-          >
-            <FontAwesomeIcon icon={faTruck} className="h-10 w-10" />
-          </motion.div>
-          <span className="text-3xl font-extrabold text-white group-hover:text-primary transition-colors tracking-tight">
-            HILAL<span className="text-primary">TOWING</span>
-          </span>
+        <Link href="/" className="flex items-center group">
+          <Image
+            src="/images/logo.png"
+            alt="Hilal Towing Service"
+            width={160}
+            height={56}
+            className="h-12 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
